@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{d3a1c18c-cd6e-4639-8afe-1427e4b6fe70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{5aba0e79-2c9a-41d3-96b3-de72425db344}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FBX">
+      <UniqueIdentifier>{a963125d-5941-4df1-ac2a-e165413d07a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{934d385d-4c5b-4743-953e-e9a4946ef289}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library">
+      <UniqueIdentifier>{2cd15533-8ac6-44dc-bf20-7733920a966c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{0285eba2-94d7-40ca-9ba8-0d8c363be80f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneMain">
+      <UniqueIdentifier>{a60f2292-039c-45d6-b7aa-97e121255850}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WinMain">
+      <UniqueIdentifier>{9ae4475d-d85a-4ad3-aa03-44ef69c07172}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Title">
+      <UniqueIdentifier>{b5a144b1-4b5a-451b-9c52-1655c31738d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Result">
+      <UniqueIdentifier>{ea4f966e-8ac3-4b40-8916-e6b9467957f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Pose">
+      <UniqueIdentifier>{d7b2af8c-ad2e-4ae8-b2f8-41b5880efe20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Texture">
+      <UniqueIdentifier>{215a9e92-3fba-442b-a371-7a9c2e30ab7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{60e14daf-f645-47a2-9c33-1e9622d1ce90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CollisionDetection">
+      <UniqueIdentifier>{b63b42b2-ecee-4458-8154-9a234b449331}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{9a0396e5-e443-4f8d-a5df-064a191c0732}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Load">
+      <UniqueIdentifier>{7274e549-bbc5-42de-9598-00d0d5d234b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Fade">
+      <UniqueIdentifier>{05defe7c-b4e8-4ce5-a3d1-3252ef0957af}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\Camera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\dslib.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="source\FbxMesh.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Framework.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="source\library.cpp">
+      <Filter>Library</Filter>
+    </ClCompile>
+    <ClCompile Include="source\game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SceneMain.cpp">
+      <Filter>SceneMain</Filter>
+    </ClCompile>
+    <ClCompile Include="source\WinMain.cpp">
+      <Filter>WinMain</Filter>
+    </ClCompile>
+    <ClCompile Include="source\title.cpp">
+      <Filter>Game\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="source\result.cpp">
+      <Filter>Game\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="source\pose.cpp">
+      <Filter>Game\Pose</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Texture.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="source\player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CollisionDetection.cpp">
+      <Filter>CollisionDetection</Filter>
+    </ClCompile>
+    <ClCompile Include="source\object.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="source\load.cpp">
+      <Filter>Game\Load</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Fade.cpp">
+      <Filter>Game\Fade</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\Camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="source\dslib.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="source\FbxMesh.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Framework.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="source\library.h">
+      <Filter>Library</Filter>
+    </ClInclude>
+    <ClInclude Include="source\game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="source\title.h">
+      <Filter>Game\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="source\result.h">
+      <Filter>Game\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SceneMain.h">
+      <Filter>SceneMain</Filter>
+    </ClInclude>
+    <ClInclude Include="source\pose.h">
+      <Filter>Game\Pose</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Texture.h">
+      <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="source\player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CollsionDetection.h">
+      <Filter>CollisionDetection</Filter>
+    </ClInclude>
+    <ClInclude Include="source\object.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="source\load.h">
+      <Filter>Game\Load</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Fade.h">
+      <Filter>Game\Fade</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,112 @@
+-------------------------------------------
+AMライブラリ ヘルパー
+Programmed by H.Makabe( MCF co.,Ltd. )
+-------------------------------------------
+
+[目的]
+アミューズメントメディア総合学院で学習用に使用されているAMライブラリでの開発を補助する目的で作成。
+学習するには少々トリッキーなコードを提供し、初期学習時のサポート、およびサンプルコードの提供を目的とする。
+
+
+[使用法]
+AMライブラリ同様、VisualStudioのプロジェクトに、以下の2ファイルを追加する
+	AmHelper.h
+	AmHelper.cpp
+
+使用したいソース上で、以下を記述する。
+	#include "AmHelper.h"
+
+
+[関数一覧]
+
+１．描画関係
+1-1.	void	DrawPrintf( int x, int y, int nColor, const char *fmt, ... );
+	文字列描画(printf()書式)
+1-2.	void	DrawLine( int x1, int y1, int x2, int y2, int color );
+	線の描画
+1-3.	void	DrawCircle( int x, int y, int r, int color );
+	円の描画
+
+
+
+
+
+
+[関数の詳細]
+
+
+１．描画関係 -------------------------------------------------------
+
+1-1.	void	DrawPrintf( int x, int y, int nColor, const char *fmt, ... );
+    ［機能］
+      画面に文字を描画する
+
+    ［文法］
+      void	DrawPrintf( int x, int y, int nColor, const char *fmt, ... );
+
+      x：描画する文字列の左上のｘ座標
+      y：描画する文字列の左上のｙ座標
+      color：描画する文字列の色
+      *fmt, ... : printf書式による文字列指定
+
+    ［戻り値］
+      なし
+
+    ［解説］
+      　AMライブラリ：DrawString()を元に、printf書式を指定できるようにした関数。
+      あわせてAMライブラリ：DrawString()の解説も参照すること。
+      また、引数の順番がAMライブラリ：DrawString()と変わっていることに注意。
+
+    ［使用例］
+	DrawPrintf( 50, 20, GetColor( 255, 255, 255 ), "x = %d, y = %d", x, y );	// 文字列描画
+
+
+
+1-2.	void	DrawLine( int x1, int y1, int x2, int y2, int color );
+    ［機能］
+      画面に線を描画する
+
+    ［文法］
+      void	DrawLine( int x1, int y1, int x2, int y2, int color );
+
+      x1：描画する線の開始ｘ座標
+      y1：描画する線の開始ｙ座標
+      x2：描画する線の終了ｘ座標
+      y2：描画する線の終了ｙ座標
+      color：描画する文字列の色
+
+    ［戻り値］
+      なし
+
+    ［解説］
+      　AMライブラリ：DrawPixel()を使って、線を描画する関数。
+      あわせてAMライブラリ：DrawPixel()の解説も参照すること。
+      描画は(x1,y1)および(x2,y2)を含む線となる。
+
+    ［使用例］
+	DrawLine( 0, 0, 320, 480, GetColor(255,0,0) );
+
+
+
+1-3.	void	DrawCircle( int x, int y, int r, int color );
+    ［機能］
+      画面に円を描画する
+
+    ［文法］
+      void	DrawCircle( int x, int y, int r, int color );
+
+      x：描画する円の中心ｘ座標
+      y：描画する円の中心ｙ座標
+      r：描画する円の半径
+      color：描画する文字列の色
+
+    ［戻り値］
+      なし
+
+    ［解説］
+      　AMライブラリ：DrawPixel()を使って、円を描画する関数。
+      あわせてAMライブラリ：DrawPixel()の解説も参照すること。
+
+    ［使用例］
+	DrawCircle( 320, 240, 120, GetColor(0,255,0) );
+

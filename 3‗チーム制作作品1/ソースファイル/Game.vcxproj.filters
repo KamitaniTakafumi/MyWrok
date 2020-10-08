@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="AMLibrary">
+      <UniqueIdentifier>{e0d517cf-3867-433e-ad4f-ff01d4d3d33b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HitJudgment">
+      <UniqueIdentifier>{ab8683aa-3b0c-4ee5-a91a-13885877a7e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{7e46b911-0080-40a8-880d-b9373045130c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy">
+      <UniqueIdentifier>{221287ca-a698-4308-8f97-056111301656}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Episode">
+      <UniqueIdentifier>{5ca93e53-b84a-4079-a24c-418459fb0d88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effect">
+      <UniqueIdentifier>{a09f0b4a-6e1f-4e37-8027-2e8d909a47c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Item">
+      <UniqueIdentifier>{08c8394d-772d-4c77-a740-4b33485242f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{43de9cd0-59f8-4b2a-b53b-cc9a3e55c998}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameMain">
+      <UniqueIdentifier>{eef7d59a-c323-46f0-97c2-a22fa796ea07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameOver">
+      <UniqueIdentifier>{63a21b19-827f-465a-9c93-08418c2607c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Ending">
+      <UniqueIdentifier>{a7c4bb5b-a4c6-4308-99ed-2f487fe03c1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameConnect">
+      <UniqueIdentifier>{01997dda-99b1-4365-9a3c-16589e532f75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Title">
+      <UniqueIdentifier>{8aa0c12e-2c91-4db9-9ec7-54f272ba903b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{995e0f99-5dab-471d-b022-d5732e021d88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{94eeadc6-4e97-4a05-b4e1-3dc83325ee02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{205b4b8a-fc4d-4a63-b347-053865bf47c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prepration">
+      <UniqueIdentifier>{bd91c941-d9c1-4f7f-a657-92f0ae0fb13b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Material">
+      <UniqueIdentifier>{cfe7601d-c07b-47cb-a6cf-5432041c8821}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prepration\Recipe">
+      <UniqueIdentifier>{19c3bd96-e172-4991-8255-b956360cd1f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WinMain">
+      <UniqueIdentifier>{6895787a-a3e1-42ed-851a-3ba31d85e5ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player%28Alice%29">
+      <UniqueIdentifier>{97a97cb2-9106-45c3-bf13-37f0603ca00a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AMLibrary\Input">
+      <UniqueIdentifier>{0ed3bd83-4966-4dee-a25b-4c14cca1351d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AMLibrary\Script">
+      <UniqueIdentifier>{1b2c8a18-9bbc-484a-8b44-0747a3e46071}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AMLibrary\Vector">
+      <UniqueIdentifier>{89dbf26c-e746-457d-b39e-839d5d45155a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\alice.cpp">
+      <Filter>Player%28Alice%29</Filter>
+    </ClCompile>
+    <ClCompile Include="source\alice2.cpp">
+      <Filter>Player%28Alice%29</Filter>
+    </ClCompile>
+    <ClCompile Include="source\aliceattack.cpp">
+      <Filter>Player%28Alice%29</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AmBridge.cpp">
+      <Filter>AMLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AmDirectX.cpp">
+      <Filter>AMLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AmHelper.cpp">
+      <Filter>AMLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\enemy1.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\enemy2.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\enemyattack.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\enemyattack2.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\episode1S.cpp">
+      <Filter>Episode</Filter>
+    </ClCompile>
+    <ClCompile Include="source\episode1S2.cpp">
+      <Filter>Episode</Filter>
+    </ClCompile>
+    <ClCompile Include="source\episode1S3.cpp">
+      <Filter>Episode</Filter>
+    </ClCompile>
+    <ClCompile Include="source\episode2S.cpp">
+      <Filter>Episode</Filter>
+    </ClCompile>
+    <ClCompile Include="source\episode2S2.cpp">
+      <Filter>Episode</Filter>
+    </ClCompile>
+    <ClCompile Include="source\episode2S3.cpp">
+      <Filter>Episode</Filter>
+    </ClCompile>
+    <ClCompile Include="source\episode2S4.cpp">
+      <Filter>Episode</Filter>
+    </ClCompile>
+    <ClCompile Include="source\game_effect.cpp">
+      <Filter>Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Object.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Object2.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Item.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="source\game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="source\title.cpp">
+      <Filter>Game\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="source\episode1L.cpp">
+      <Filter>Game\GameMain</Filter>
+    </ClCompile>
+    <ClCompile Include="source\episode2L.cpp">
+      <Filter>Game\GameMain</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gameover.cpp">
+      <Filter>Game\GameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="source\end.cpp">
+      <Filter>Game\Ending</Filter>
+    </ClCompile>
+    <ClCompile Include="source\mapdata_1.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="source\mapdata_2.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="source\changeroom.cpp">
+      <Filter>Game\GameConnect</Filter>
+    </ClCompile>
+    <ClCompile Include="source\HitJudgment.cpp">
+      <Filter>HitJudgment</Filter>
+    </ClCompile>
+    <ClCompile Include="source\UI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\preparation.cpp">
+      <Filter>Prepration</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Material.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="source\recipe.cpp">
+      <Filter>Prepration\Recipe</Filter>
+    </ClCompile>
+    <ClCompile Include="source\WinMain.cpp">
+      <Filter>WinMain</Filter>
+    </ClCompile>
+    <ClCompile Include="source\input_manager.cpp">
+      <Filter>AMLibrary\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="source\story_script.cpp">
+      <Filter>AMLibrary\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vector.cpp">
+      <Filter>AMLibrary\Vector</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\alice.h">
+      <Filter>Player%28Alice%29</Filter>
+    </ClInclude>
+    <ClInclude Include="source\aliceattack.h">
+      <Filter>Player%28Alice%29</Filter>
+    </ClInclude>
+    <ClInclude Include="source\amgame.h">
+      <Filter>AMLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AmHelper.h">
+      <Filter>AMLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="source\camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="source\changeroom.h">
+      <Filter>Game\GameConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="source\end.h">
+      <Filter>Game\Ending</Filter>
+    </ClInclude>
+    <ClInclude Include="source\enemy.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="source\enemyattack.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="source\episode1S.h">
+      <Filter>Episode</Filter>
+    </ClInclude>
+    <ClInclude Include="source\episode1S2.h">
+      <Filter>Episode</Filter>
+    </ClInclude>
+    <ClInclude Include="source\episode1S3.h">
+      <Filter>Episode</Filter>
+    </ClInclude>
+    <ClInclude Include="source\episode2S2.h">
+      <Filter>Episode</Filter>
+    </ClInclude>
+    <ClInclude Include="source\episode2S.h">
+      <Filter>Episode</Filter>
+    </ClInclude>
+    <ClInclude Include="source\episode2S3.h">
+      <Filter>Episode</Filter>
+    </ClInclude>
+    <ClInclude Include="source\episode2S4.h">
+      <Filter>Episode</Filter>
+    </ClInclude>
+    <ClInclude Include="source\episode1L.h">
+      <Filter>Game\GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="source\episode2L.h">
+      <Filter>Game\GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="source\game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="source\game_effect.h">
+      <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="source\gameover.h">
+      <Filter>Game\GameOver</Filter>
+    </ClInclude>
+    <ClInclude Include="source\global.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="source\HitJudgment.h">
+      <Filter>HitJudgment</Filter>
+    </ClInclude>
+    <ClInclude Include="source\input_manager.h">
+      <Filter>AMLibrary\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Item.h">
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="source\mapdata_1.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="source\mapdata_2.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Material.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Object.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="source\preparation.h">
+      <Filter>Prepration</Filter>
+    </ClInclude>
+    <ClInclude Include="source\recipe.h">
+      <Filter>Prepration\Recipe</Filter>
+    </ClInclude>
+    <ClInclude Include="source\title.h">
+      <Filter>Game\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="source\UI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="source\script_parser.h">
+      <Filter>AMLibrary\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="source\vector.h">
+      <Filter>AMLibrary\Vector</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="source\Amgamew.txt" />
+    <Text Include="source\AmHelper.txt" />
+  </ItemGroup>
+</Project>
