@@ -13,10 +13,7 @@ namespace act {
 	 */
 	Control::Control()
 	{
-		for (int i = 0; i < ITEM_MAX; i++)
-		{
-			item[i] = new Item(i);
-		}
+		
 	}
 
 	/**
@@ -24,10 +21,7 @@ namespace act {
 	 */
 	Control::~Control()
 	{
-		for (int i = 0; i < ITEM_MAX; i++)
-		{
-			delete item[i];
-		}
+		
 	}
 
 	/**
@@ -37,6 +31,13 @@ namespace act {
 	{
 		player = std::make_unique<Player>();
 		player->Initialize();
+
+		for (int i = 0; i < ITEM_MAX; i++)
+		{
+			auto item = std::make_shared<Item>(i);
+			itemvec.push_back(item);
+			itemvec[i]->Initialize(i);
+		}
 
 		return true;
 	}
@@ -49,9 +50,10 @@ namespace act {
 	void Control::Move(int key, int trg)
 	{
 		player->Move(key, trg);
+
 		for (int i = 0; i < ITEM_MAX; i++)
 		{
-			item[i]->Move(i);
+			itemvec[i]->Move(i);
 		}
 	}
 
@@ -81,8 +83,8 @@ namespace act {
 	{
 		double tempx, tempy;
 		//指定した添字の敵の座標を取得
-		tempx = item[index]->GetPosX();
-		tempy = item[index]->GetPosY();
+		tempx = itemvec[index]->GetPosX();
+		tempy = itemvec[index]->GetPosY();
 
 		//代入
 		*x = tempx;
@@ -121,16 +123,16 @@ namespace act {
 		double px, py, ix, iy;
 		//操作キャラとアイテムとの当たり判定
 		for (int i = 0; i < ITEM_MAX; ++i) {
-			if (item[i]->GetUseFlag() != true) { continue; }
+			if (itemvec[i]->GetUseFlag() != true) { continue; }
 			else
 			{
 				px = player->GetCollPosX();
 				py = player->GetCollPosY();
-				ix = item[i]->GetCollPosX();
-				iy = item[i]->GetCollPosY();
+				ix = itemvec[i]->GetCollPosX();
+				iy = itemvec[i]->GetCollPosY();
 				if (CircleCollision(PLAYER_COLLISION, ITEM_COLLISION, px, ix, py, iy))
 				{
-					item[i]->SetUseFlag();
+					itemvec[i]->SetUseFlag();
 					if (i >= 50 && i < 100) { player->SetHP(); }
 				}
 			}
@@ -157,7 +159,7 @@ namespace act {
 	{
 		for (int i = 0; i < ITEM_MAX; i++)
 		{
-			item[i]->Draw();
+			itemvec[i]->Draw();
 		}
 		player->Draw();
 	}

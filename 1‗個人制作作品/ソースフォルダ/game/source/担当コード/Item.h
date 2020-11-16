@@ -13,14 +13,20 @@ namespace act {
 	{
 	public:
 		/**
-		 * Itemコンストラクタ
+		 * アイテムコンストラクタ
 		 */
 		Item(int i);
 
 		/**
-		 * Itemデストラクタ
+		 * アイテムデストラクタ
 		 */
 		virtual ~Item();
+
+		/**
+		 * アイテム初期化
+		 * @param i 添え字
+		 */
+		void Initialize(int i);
 
 		/**
 		 * ゲッター(x座標)
@@ -93,20 +99,10 @@ namespace act {
 		 */
 		void UseItem();
 	private:
-		enum ItemType {
-			WHITE_JEWEL,
-			GREEN_JEWEL,
-			BLUE_JEWEL,
-			RED_JEWEL,
-			GOLD_JEWEL,
-			BLACK_HEART,
-		};
-
 		int _x, _y;				// x座標,y座標
-		int _ghitem[6];			// グラフィックハンドル格納用配列
+		int _ghitem;			// グラフィックハンドル格納用配列
 		int _width, _height;	// 画像幅
 		int _speed;				// 落下スピード
-		int _itemtype;
 		bool _use;				// 使っているかどうかのフラグ
 	};
 }

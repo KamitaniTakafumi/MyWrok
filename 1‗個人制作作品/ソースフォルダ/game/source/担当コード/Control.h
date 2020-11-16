@@ -15,7 +15,7 @@ namespace act {
 	{
 	private:
 		std::unique_ptr<Player> player;
-		Item* item[ITEM_MAX];
+		std::vector<std::shared_ptr<Item>> itemvec;
 	public:
 		/**
 		 * コントロールコンストラクタ

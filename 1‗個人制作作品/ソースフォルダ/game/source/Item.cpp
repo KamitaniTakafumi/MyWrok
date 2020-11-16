@@ -14,30 +14,13 @@ namespace act {
 	 */
 	Item::Item(int i)
 	{
-		_width = 40;
-		_height = 40;
-
-		_x = 0 + 20 * i;
-		_y = 0 - _height;
-
-		if ((i >= 0) && (i < 10)) { _itemtype = WHITE_JEWEL; }
-		else if ((i >= 10) && (i < 20)) { _itemtype = GREEN_JEWEL; }
-		else if ((i >= 20) && (i < 30)) { _itemtype = BLUE_JEWEL; }
-		else if ((i >= 30) && (i < 40)) { _itemtype = RED_JEWEL; }
-		else if ((i >= 40) && (i < 50)) { _itemtype = GOLD_JEWEL; }
-		else if ((i >= 50) && (i < 100)) { _itemtype = BLACK_HEART; }
-
-		_speed = 0;
-
-		_use = false;
-
 		// ‰æ‘œ“Ç‚Ýž‚Ý
-		_ghitem[0] = LoadTexture("res/jewelWhite.png");
-		_ghitem[1] = LoadTexture("res/jewelGreen.png");
-		_ghitem[2] = LoadTexture("res/jewelBlue.png");
-		_ghitem[3] = LoadTexture("res/jewelRed.png");
-		_ghitem[4] = LoadTexture("res/jewelGold.png");
-		_ghitem[5] = LoadTexture("res/heartB.png");
+		if ((i >= 0) && (i < 10)) { _ghitem = LoadTexture("res/jewelWhite.png"); }
+		else if ((i >= 10) && (i < 20)) { _ghitem = LoadTexture("res/jewelGreen.png"); }
+		else if ((i >= 20) && (i < 30)) { _ghitem = LoadTexture("res/jewelBlue.png"); }
+		else if ((i >= 30) && (i < 40)) { _ghitem = LoadTexture("res/jewelRed.png"); }
+		else if ((i >= 40) && (i < 50)) { _ghitem = LoadTexture("res/jewelGold.png"); }
+		else if ((i >= 50) && (i < 100)) { _ghitem = LoadTexture("res/heartB.png"); }
 	}
 
 	/**
@@ -45,6 +28,23 @@ namespace act {
 	 */
 	Item::~Item()
 	{
+	}
+
+	/**
+	 * ƒAƒCƒeƒ€‰Šú‰»
+	 * @param i “Y‚¦Žš
+	 */
+	void Item::Initialize(int i)
+	{
+		_width = 40;
+		_height = 40;
+
+		_x = 0 + 20 * i;
+		_y = 0 - _height;
+
+		_speed = 0;
+
+		_use = false;
 	}
 
 	/**
@@ -142,24 +142,7 @@ namespace act {
 		if (_use != true) { return false; }
 		else
 		{
-			if (_itemtype == WHITE_JEWEL) {
-				DrawMemTh(_x, _y, _ghitem[0]);
-			}
-			else if (_itemtype == GREEN_JEWEL) {
-				DrawMemTh(_x, _y, _ghitem[1]);
-			}
-			else if (_itemtype == BLUE_JEWEL) {
-				DrawMemTh(_x, _y, _ghitem[2]);
-			}
-			else if (_itemtype == RED_JEWEL) {
-				DrawMemTh(_x, _y, _ghitem[3]);
-			}
-			else if (_itemtype == GOLD_JEWEL) {
-				DrawMemTh(_x, _y, _ghitem[4]);
-			}
-			else if (_itemtype == BLACK_HEART) {
-				DrawMemTh(_x, _y, _ghitem[5]);
-			}
+			DrawMemTh(_x, _y, _ghitem);
 #ifdef _DEBUG
 			DrawFBox(GetCollPosX(), GetCollPosY(), GetCollPosX() + (ITEM_COLLISION * 2),
 				GetCollPosY() + (ITEM_COLLISION * 2), GetColor(NULL, 255, 0, 0));
