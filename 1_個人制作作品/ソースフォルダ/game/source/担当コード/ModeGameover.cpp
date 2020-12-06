@@ -61,12 +61,10 @@ namespace act {
 		DrawMemTh(0, 0, _bg);	// 背景描画
 
 		// パッドが接続されているかによって表示する画像を変える
-		if (gJoyPadNum != 0)
-		{
+		if (gJoyPadNum != 0) {
 			DrawMemTh(0, 0, _startpad);	// スタート画像描画(パッド)
 		}
-		else
-		{
+		else {
 			DrawMemTh(0, 0, _start);	// スタート画像描画(キーボード)
 		}
 		return true;

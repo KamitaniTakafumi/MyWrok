@@ -12,32 +12,27 @@ namespace act {
 	/**
 	 * Playerコンストラクタ
 	 */
-	Player::Player()
-	{
-		//画像読み込み
-		LoadBlkTexture("res/sample01.png", 80, 80, 3, 4, 12, _ghplayer);
-		_ghhp = LoadTexture("res/heartP.png");
+	Player::Player() :
+		_PlayerX(0), _PlayerY(0), _GhPlayer{ 0 }, _Subscript(0),
+		_PlayerWidth(0), _PlayerHeight(0), _Life(0), _CharaState(0)	{
 	}
 
 	/**
-	 * Playerデストラクタ
+	 * プレイヤー初期化
 	 */
-	Player::~Player()
-	{
-	}
+	void Player::Initialize() {
+		_PlayerWidth = 80;
+		_PlayerHeight = 80;
+		_PlayerX = (WINDOW_WIDTH - _PlayerWidth) / 2;
+		_PlayerY = WINDOW_HEIGHT - _PlayerHeight;
+		_Subscript = 6;
 
-	bool Player::Initialize()
-	{
-		_width = 80;
-		_height = 80;
-		_x = (WINDOW_WIDTH - _width) / 2;
-		_y = WINDOW_HEIGHT - _height;
-		_suffix = 6;
+		_Life = PLAYER_HP;
 
-		_life = PLAYER_HP;
-
-		_charastate = LOOK_RIGHT;
-		return false;
+		//画像読み込み
+		LoadBlkTexture("res/sample01.png", 80, 80, 3, 4, 12, _GhPlayer);
+		
+		_CharaState = LOOK_RIGHT;
 	}
 
 	/**
@@ -45,92 +40,65 @@ namespace act {
 	 * @param key 押した瞬間の判定
 	 * @param trg 押されっぱなしの判定
 	 */
-	void Player::Move(int key, int trg)
-	{
+	void Player::Move(int key, int trg) {
 		// 移動処理
-		if (KeyJudg(key, KEYIN_D) || PadJudg(key, KEYIN_RIGHT))
-		{
-			_x += PLAYER_SPEED;
-			_charastate = LOOK_RIGHT;
+		if (KeyJudg(key, KEYIN_D) || PadJudg(key, KEYIN_RIGHT)) {
+			_PlayerX += PLAYER_SPEED;
+			_CharaState = LOOK_RIGHT;
 		}
-		if (KeyJudg(key, KEYIN_A) || PadJudg(key, KEYIN_LEFT))
-		{
-			_x -= PLAYER_SPEED;
-			_charastate = LOOK_LEFT;
+		if (KeyJudg(key, KEYIN_A) || PadJudg(key, KEYIN_LEFT)) {
+			_PlayerX -= PLAYER_SPEED;
+			_CharaState = LOOK_LEFT;
 		}
 
 		// 画面外判定
-		if (_x < 0) { _x = 0; }
-		if (_x > WINDOW_WIDTH - _width) { _x = WINDOW_WIDTH - _width; }
+		if (_PlayerX < 0) { _PlayerX = 0; }
+		if (_PlayerX > WINDOW_WIDTH - _PlayerWidth) { _PlayerX = WINDOW_WIDTH - _PlayerWidth; }
 
 		// キャラの向きで添え字を変える
-		if (_charastate == LOOK_RIGHT)
-		{
-			// 右向き
-			if ((_suffix >= 3) && (_suffix < 6))
-			{
-				_suffix = 6;
+		// 右向き
+		if (_CharaState == LOOK_RIGHT) {
+			if ((_Subscript >= 3) && (_Subscript < 6)) {
+				_Subscript = 6;
 			}
 		}
-		else if (_charastate == LOOK_LEFT)
-		{
-			// 左向き
-			if ((_suffix >= 6) && (_suffix < 9))
-			{
-				_suffix = 3;
+		// 左向き
+		else if (_CharaState == LOOK_LEFT) {
+			if ((_Subscript >= 6) && (_Subscript < 9)) {
+				_Subscript = 3;
 			}
 		}
 
 		// 時間で添え字を変える
-		if ((gFpsCount % ((int)FRAME_NUM_PER_SEC / 2)) == 0)
-		{
-			_suffix++;	// 添え字を変える
+		if ((gFpsCount % ((int)FRAME_NUM_PER_SEC / 2)) == 0) {
+			_Subscript++;	// 添え字を変える
 
 			// キャラが右向き
-			if (_charastate == LOOK_RIGHT)
-			{
+			if (_CharaState == LOOK_RIGHT) {
 				// 添え字が範囲を越えたら戻す
-				if (_suffix >= 9)
-				{
-					_suffix = 6;
+				if (_Subscript >= 9) {
+					_Subscript = 6;
 				}
 			}
 			// キャラが左向き
-			else if (_charastate == LOOK_LEFT)
-			{
+			else if (_CharaState == LOOK_LEFT) {
 				// 添え字が範囲を越えたら戻す
-				if (_suffix >= 6)
-				{
-					_suffix = 3;
+				if (_Subscript >= 6) {
+					_Subscript = 3;
 				}
 			}
 		}
 
-		SetPosX(_x);
+		SetPosX(_PlayerX);
 	}
 
 	/**
 	 * 描画処理
 	 */
-	void Player::Draw()
-	{
+	void Player::Draw() {
 		// ライフが残っていればプレイヤー描画
-		if (_life > 0)
-		{
-			DrawMemTh(_x, _y, _ghplayer[_suffix]);
-		}
-		// ライフ描画
-		if (_life > 0)
-		{
-			DrawMemTh(0, 0, _ghhp);
-		}
-		if (_life > 1)
-		{
-			DrawMemTh(40, 0, _ghhp);
-		}
-		if (_life > 2)
-		{
-			DrawMemTh(80, 0, _ghhp);
+		if (_Life > 0) {
+			DrawMemTh(_PlayerX, _PlayerY, _GhPlayer[_Subscript]);
 		}
 #ifdef _DEBUG
 		DrawFBox(GetCollPosX(), GetCollPosY(), GetCollPosX() + (PLAYER_COLLISION * 2),

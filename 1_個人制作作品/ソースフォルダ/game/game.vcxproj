@@ -94,6 +94,7 @@
     <ClCompile Include="source\ModeGameover.cpp" />
     <ClCompile Include="source\ModeTitle.cpp" />
     <ClCompile Include="source\Player.cpp" />
+    <ClCompile Include="source\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ApplicationMain.h" />
@@ -106,6 +107,7 @@
     <ClInclude Include="source\ModeGameover.h" />
     <ClInclude Include="source\ModeTitle.h" />
     <ClInclude Include="source\Player.h" />
+    <ClInclude Include="source\UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

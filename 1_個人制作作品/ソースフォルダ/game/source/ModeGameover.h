@@ -11,8 +11,7 @@
 #include "ModeGame.h"
 
 namespace act {
-	class ModeGameover : public ModeBase
-	{
+	class ModeGameover : public ModeBase {
 		typedef ModeBase base;
 	public:
 		/**

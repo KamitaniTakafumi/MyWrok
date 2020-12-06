@@ -11,8 +11,7 @@
 #include "Item.h"
 
 namespace act {
-	class Control
-	{
+	class Control {
 	private:
 		std::unique_ptr<Player> player;
 		std::vector<std::shared_ptr<Item>> itemvec;
@@ -25,12 +24,12 @@ namespace act {
 		/**
 		 * コントロールデストラクタ
 		 */
-		virtual ~Control();
+		virtual ~Control() = default;
 
 		/**
 		 * コントロール初期化
 		 */
-		bool Initialize();
+		void Initialize();
 
 		/**
 		 * 移動処理
@@ -62,7 +61,12 @@ namespace act {
 		/**
 		 * プレイヤーの体力チェック
 		 */
-		bool CheckPlayerHP();
+		bool CheckPlayerHP() { if (player->GetHP() == 0) { return true; } return false; }
+
+		/**
+		 * プレイヤーの体力取得
+		 */
+		int GetPlayerHP() { return player->GetHP(); }
 
 		/**
 		 * 描画処理
@@ -79,6 +83,5 @@ namespace act {
 		 * @param cy2 y座標２
 		 */
 		bool CircleCollision(double c1, double c2, double cx1, double cx2, double cy1, double cy2);
-	protected:
 	};
 }

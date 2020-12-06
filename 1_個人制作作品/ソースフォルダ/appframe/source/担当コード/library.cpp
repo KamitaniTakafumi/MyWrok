@@ -40,8 +40,7 @@ IDirect3DDevice9*	gD3DDevice;
  * デバイス初期化
  * @return 初期化できればtrue、できなければfalse
  */
-bool InitD3D(HWND hWnd, bool bFullScreen)
-{
+bool InitD3D(HWND hWnd, bool bFullScreen) {
 	//	スクリーンサイズ取得
 	int	Width = 1280;
 	int	Height = 720;
@@ -98,17 +97,21 @@ bool InitD3D(HWND hWnd, bool bFullScreen)
 	//	デバイス作成
 	if (FAILED(glpD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
 		D3DCREATE_HARDWARE_VERTEXPROCESSING,
-		&gD3Dpp, &gD3DDevice))) {
+		&gD3Dpp, &gD3DDevice))) 
+	{
 		if (FAILED(glpD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
 			D3DCREATE_SOFTWARE_VERTEXPROCESSING,
-			&gD3Dpp, &gD3DDevice))) {
+			&gD3Dpp, &gD3DDevice))) 
+		{
 			MessageBox(0, "HALモードでDIRECT3Dデバイスを作成できません\nREFモードで再試行します", NULL, MB_OK);
 			if (FAILED(glpD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_REF, hWnd,
 				D3DCREATE_HARDWARE_VERTEXPROCESSING,
-				&gD3Dpp, &gD3DDevice))) {
+				&gD3Dpp, &gD3DDevice))) 
+			{
 				if (FAILED(glpD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_REF, hWnd,
 					D3DCREATE_SOFTWARE_VERTEXPROCESSING,
-					&gD3Dpp, &gD3DDevice))) {
+					&gD3Dpp, &gD3DDevice))) 
+				{
 					MessageBox(0, "DIRECT3Dデバイスの作成に失敗しました", NULL, MB_OK);
 					return false;
 				}
@@ -127,8 +130,7 @@ bool InitD3D(HWND hWnd, bool bFullScreen)
 /**
  * デバイス開放
  */
-void ReleaseD3D()
-{
+void ReleaseD3D() {
 	gD3DDevice->Release(); gD3DDevice = NULL;
 	glpD3D->Release(); glpD3D = NULL;
 }
@@ -136,16 +138,14 @@ void ReleaseD3D()
 /**
  * シーン開始
  */
-void BeginScene()
-{
+void BeginScene() {
 	gD3DDevice->BeginScene();
 }
 
 /**
  * シーン終了
  */
-void EndScene()
-{
+void EndScene() {
 	gD3DDevice->EndScene();
 	if (FAILED(gD3DDevice->Present(NULL, NULL, NULL, NULL))) gD3DDevice->Reset(&gD3Dpp);
 }
@@ -167,23 +167,16 @@ BOOL gFullScreen = TRUE;
 /**
  * ウィンドウプロシージャ
  */
-LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
+LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	switch (message) {
 	case WM_DESTROY: PostQuitMessage(0); return 0;
 	case WM_KEYDOWN:
 		switch (wParam) {
 		case VK_ESCAPE: PostMessage(hWnd, WM_CLOSE, 0, 0); return 0;
 
-		case WM_LBUTTONDOWN:
-		{
-			break;
-		}
-		case WM_RBUTTONDOWN:
-		{
-			break;
-		}
+		case WM_LBUTTONDOWN: break;
 
+		case WM_RBUTTONDOWN: break;
 		}
 
 		break;
@@ -262,8 +255,7 @@ BOOL							gSceneActive = false;		// シーンはアクティブか
 /*
  * Windowsイベント処理
  */
-int ProcessEvent(void)
-{
+int ProcessEvent(void) {
 	int					nEventCnt;
 	MSG					msg;
 
@@ -286,8 +278,7 @@ int ProcessEvent(void)
 /**
  * 画面の更新
  */
-int DispFlip(void)
-{
+int DispFlip(void) {
 	D3DRASTER_STATUS			RasterData;
 
 	if (gEndFlag) return DISPERROR;						// 終了か
@@ -309,7 +300,7 @@ int DispFlip(void)
 		gD3DDevice->BeginScene();							// シーン開始
 		gSceneActive = true;
 	}
-	else return DISPERROR;
+	else { return DISPERROR; }
 
 	return OK;
 }
@@ -317,8 +308,7 @@ int DispFlip(void)
 /**
  * アプリケーション初期化
  */
-bool InitApp()
-{
+bool InitApp() {
 	if (!ConnectionPad()) { return false; }
 
 	if (!InitD3D(gWindowHandle, gFullScreen)) { return false; }
@@ -334,8 +324,7 @@ bool InitApp()
  * キー入力付加
  * @parme nKeyState キー入力状態
  */
-extern int AddKeyInput(int nKeyState)
-{
+int AddKeyInput(int nKeyState) {
 	BYTE			cKeyBuf[256];
 
 	GetKeyboardState(cKeyBuf);								// キーボード
@@ -371,8 +360,7 @@ extern int AddKeyInput(int nKeyState)
  * @parme nPushKey 押されたキー
  * @parme nJudgKey 判定したいキー
  */
-bool KeyJudg(int nPushKey, int nJudgKey)
-{
+bool KeyJudg(int nPushKey, int nJudgKey) {
 	if (nPushKey & nJudgKey) return true;
 	return false;
 }
@@ -380,7 +368,7 @@ bool KeyJudg(int nPushKey, int nJudgKey)
 /**
  * パッド用グローバル変数
  */
-int	gJoyPadNum = -1;				// ジョイパッド数
+int	gJoyPadNum = -1;			// ジョイパッド数
 int	gMouseCursor = false;		// マウスカーソル
 
 int gKeyOld1;
@@ -407,8 +395,7 @@ UINT	gPadIDs[MAX_JOYSTICK_COUNT] = { JOYSTICKID1, JOYSTICKID2, JOYSTICKID3, JOYS
  * @parme nPadIndex パッドの番号(0～3)
  * @parme nPadState パッド入力状態
  */
-extern int AddJoyInput(int nPadIndex, int nPadState)
-{
+int AddJoyInput(int nPadIndex, int nPadState) {
 	JOYPAD						*pJoyPad;						// パッド
 	JOYINFOEX					JoyInfo;						// パッド情報
 
@@ -416,15 +403,13 @@ extern int AddJoyInput(int nPadIndex, int nPadState)
 	if (nPadIndex < 0 || nPadIndex >= gJoyPadNum) return PADERROR;
 	pJoyPad = &gJoyPads[nPadIndex];
 
-	if (pJoyPad->bValid)
-	{									// 有効か
+	if (pJoyPad->bValid) {									// 有効か
 		JoyInfo.dwSize = sizeof(JoyInfo);					// Joy構造体セット
 		JoyInfo.dwFlags = JOY_RETURNALL;
 		JoyInfo.dwXpos = pJoyPad->nCenterX;
 		JoyInfo.dwYpos = pJoyPad->nCenterY;
 		JoyInfo.dwButtons = 0;
-		if (joyGetPosEx(pJoyPad->uJoyID, &JoyInfo) == JOYERR_NOERROR)
-		{
+		if (joyGetPosEx(pJoyPad->uJoyID, &JoyInfo) == JOYERR_NOERROR) {
 			if (JoyInfo.dwYpos > pJoyPad->nBottom) nPadState |= KEYIN_2;
 			if (JoyInfo.dwXpos < pJoyPad->nLeft) nPadState |= KEYIN_4;
 			if (JoyInfo.dwXpos > pJoyPad->nRight) nPadState |= KEYIN_6;
@@ -442,8 +427,7 @@ extern int AddJoyInput(int nPadIndex, int nPadState)
  * @parme nPushPad 押されたボタン
  * @parme nJudgPad 判定したいボタン
  */
-bool PadJudg(int nPushPad, int nJudgPad)
-{
+bool PadJudg(int nPushPad, int nJudgPad) {
 	if (nPushPad & nJudgPad) return true;
 	return false;
 }
@@ -452,15 +436,13 @@ bool PadJudg(int nPushPad, int nJudgPad)
  * キーが押されているかチェック
  * @parme nInputMode 入力モード
  */
-extern int CheckKey(int nInputMode)
-{
+int CheckKey(int nInputMode) {
 	int							i;
 	int							nResult = 0;
 
 	switch (nInputMode) {
 		// マルチプル入力
 	case INPUT_MULT:
-
 		nResult = AddKeyInput(0);							// キーボード入力
 
 		for (i = 0; i < gJoyPadNum; i++) {					// パッド入力
@@ -499,7 +481,6 @@ extern int CheckKey(int nInputMode)
 		break;
 	}
 
-
 	return nResult;
 }
 
@@ -507,16 +488,13 @@ extern int CheckKey(int nInputMode)
 /**
  *  単体ジョイパッド初期化
  */
-static int InitSinglePad(UINT nJoyID, JOYPAD *pJoyPad)
-{
+static int InitSinglePad(UINT nJoyID, JOYPAD *pJoyPad) {
 	JOYCAPS						jCaps;
 	JOYINFOEX					jJoyInfo;
 	int							nResult = PADERROR;
 
 	pJoyPad->bValid = false;									// 無効にしておく
-	if (joyGetDevCaps(nJoyID, &jCaps, sizeof(jCaps))
-		== JOYERR_NOERROR)
-	{
+	if (joyGetDevCaps(nJoyID, &jCaps, sizeof(jCaps)) == JOYERR_NOERROR) {
 		pJoyPad->uJoyID = nJoyID;
 		pJoyPad->nMinX = jCaps.wXmin;  pJoyPad->nMaxX = jCaps.wXmax;
 		pJoyPad->nMinY = jCaps.wYmin;  pJoyPad->nMaxY = jCaps.wYmax;
@@ -532,8 +510,7 @@ static int InitSinglePad(UINT nJoyID, JOYPAD *pJoyPad)
 			+ pJoyPad->nMinY;
 		jJoyInfo.dwSize = sizeof(jJoyInfo);					// Joy構造体セット
 		jJoyInfo.dwFlags = JOY_RETURNALL;
-		if (joyGetPosEx(pJoyPad->uJoyID, &jJoyInfo) == JOYERR_NOERROR)
-		{
+		if (joyGetPosEx(pJoyPad->uJoyID, &jJoyInfo) == JOYERR_NOERROR) {
 			pJoyPad->bValid = TRUE;								// パッド有効に
 			nResult = OK;
 		}
@@ -545,8 +522,7 @@ static int InitSinglePad(UINT nJoyID, JOYPAD *pJoyPad)
 /**
  *  パッド使用終了
  */
-extern int EndJoyPad(void)
-{
+int EndJoyPad(void) {
 	return OK;
 }
 
@@ -554,8 +530,7 @@ extern int EndJoyPad(void)
 * パッド初期化
 * @param nMaxPadNum パッドの最大数
 */
-int InitJoyPad(int nMaxPadNum)
-{
+int InitJoyPad(int nMaxPadNum) {
 	int							i;
 	int							nActivePadNum = 0;				// アクティブなパッド数
 	int							nResult;
@@ -563,8 +538,7 @@ int InitJoyPad(int nMaxPadNum)
 	gJoyPadNum = 0;
 
 	if (nMaxPadNum > MAX_JOYSTICK_COUNT) nMaxPadNum = MAX_JOYSTICK_COUNT;
-	for (i = 0; i < nMaxPadNum; i++)
-	{
+	for (i = 0; i < nMaxPadNum; i++) {
 		nResult = InitSinglePad(gPadIDs[i], &gJoyPads[i]);	// パッド初期化
 		if (nResult != OK) break;							// 無ければ終了
 		nActivePadNum++;
@@ -581,33 +555,31 @@ int InitJoyPad(int nMaxPadNum)
 void InKey()
 {
 	gKeyOld1 = gKey1;
-	gKey1 = CheckKey(INPUT_PAD1);						//キー入力取得
-	gTrg1 = (gKey1 ^ gKeyOld1)& gKey1;				//トリガーキー入力取得
+	gKey1 = CheckKey(INPUT_PAD1);		//キー入力取得
+	gTrg1 = (gKey1 ^ gKeyOld1)& gKey1;	//トリガーキー入力取得
 
 	gKeyOld2 = gKey2;
-	gKey2 = CheckKey(INPUT_PAD2);						//キー入力取得
-	gTrg2 = (gKey2 ^ gKeyOld2)& gKey2;				//トリガーキー入力取得
+	gKey2 = CheckKey(INPUT_PAD2);		//キー入力取得
+	gTrg2 = (gKey2 ^ gKeyOld2)& gKey2;	//トリガーキー入力取得
 
 	gKeyOld3 = gKey3;
-	gKey3 = CheckKey(INPUT_PAD3);						//キー入力取得
-	gTrg3 = (gKey3 ^ gKeyOld3)& gKey3;				//トリガーキー入力取得
+	gKey3 = CheckKey(INPUT_PAD3);		//キー入力取得
+	gTrg3 = (gKey3 ^ gKeyOld3)& gKey3;	//トリガーキー入力取得
 
 	gKeyOld4 = gKey4;
-	gKey4 = CheckKey(INPUT_PAD4);						//キー入力取得
-	gTrg4 = (gKey4 ^ gKeyOld4)& gKey4;				//トリガーキー入力取得
+	gKey4 = CheckKey(INPUT_PAD4);		//キー入力取得
+	gTrg4 = (gKey4 ^ gKeyOld4)& gKey4;	//トリガーキー入力取得
 }
 
 /**
  * パッドの接続設定
  */
-bool ConnectionPad()
-{
-	if (InitJoyPad(MAX_JOYSTICK_COUNT) <= 0)
-	{
+bool ConnectionPad() {
+	if (InitJoyPad(MAX_JOYSTICK_COUNT) <= 0) {
 		int flag;
 		flag = MessageBox(NULL, "キーボード操作でゲームを開始しますか？", "コントローラー設定", MB_YESNO);
-		if (flag == IDNO)
-		{
+
+		if (flag == IDNO) {
 			MessageBox(NULL, "コントローラーを接続して再起動してください", "コントローラー設定", NULL);
 			return false;
 		}
@@ -624,20 +596,23 @@ LPD3DXFONT	gD3DFont = NULL;
 int			gStringFontSize = -1;	// 文字列フォントサイズ
 
 /**
- * 文字列使用初期化
+ * 文字列初期化
  */
 int InitFont() {
 	//文字列レンダリングの初期化
 	if (FAILED(D3DXCreateFont(gD3DDevice, 0, 10, FW_REGULAR, NULL, false, SHIFTJIS_CHARSET,
-		OUT_DEFAULT_PRECIS, PROOF_QUALITY, FIXED_PITCH | FF_MODERN, "ＭＳ ゴシック", &gD3DFont))) {
+		OUT_DEFAULT_PRECIS, PROOF_QUALITY, FIXED_PITCH | FF_MODERN, "ＭＳ ゴシック", &gD3DFont)))
+	{
 		return FONTERROR;
 	}
 
 	return OK;
 }
 
-void	ReleaseFont()
-{
+/**
+ * 文字列開放
+ */
+void	ReleaseFont() {
 	gD3DFont->Release();
 }
 
@@ -654,10 +629,10 @@ DWORD GetColor(int alpha, int red, int green, int blue) {
 
 	// 規定数以上or規定数未満ならば戻す
 	if (alpha == NULL) { alpha = 255; }
-	if (alpha < 0) alpha = 0;  else if (alpha > 255) alpha = 255;
-	if (red < 0) red = 0;  else if (red > 255) red = 255;
-	if (green < 0) green = 0;  else if (green > 255) green = 255;
-	if (blue < 0) blue = 0;  else if (blue > 255) blue = 255;
+	if (alpha < 0) { alpha = 0; } else if (alpha > 255) { alpha = 255; }
+	if (red < 0) { red = 0; } else if (red > 255) { red = 255; }
+	if (green < 0) { green = 0; } else if (green > 255) { green = 255; }
+	if (blue < 0) { blue = 0; } else if (blue > 255) { blue = 255; }
 
 	result = static_cast<int>D3DCOLOR_ARGB(alpha, red, green, blue);
 
@@ -702,25 +677,24 @@ int	fg_nFrameCount = 0;		// フレームカウンタ
 /**
  * 2Dグラフィックロード
  */
-extern LPDIRECT3DTEXTURE9 Load2DGraph(char *szFileName, TEX_2DPIC_INFO *pPicInfo)
-{
-	LPDIRECT3DTEXTURE9		p2dGraph = NULL;				// ロードテクスチャ
+LPDIRECT3DTEXTURE9 Load2DGraph(char *szFileName, TEX_2DPIC_INFO *pPicInfo) {
+	LPDIRECT3DTEXTURE9		p2dGraph = NULL;	// ロードテクスチャ
 	HRESULT					hRes;
 	D3DXIMAGE_INFO			iiImageInfo;
 	LPDIRECT3DSURFACE9		lpTopSurf;
 	D3DSURFACE_DESC			ddSurfInfo;
-	D3DFORMAT				dfTexFormat;					// テクスチャフォーマット
-	D3DCOLOR				nColorKey;						// カラーキー
+	D3DFORMAT				dfTexFormat;		// テクスチャフォーマット
+	D3DCOLOR				nColorKey;			// カラーキー
 
 	// ピクセルフォーマット
 	dfTexFormat = (gBitDepth == 32) ? D3DFMT_A8R8G8B8 : D3DFMT_A1R5G5B5;
 
 	// カラーキー処理
 	if (strstr(szFileName, ".bmp") || strstr(szFileName, ".BMP")) {	// ビットマップの場合
-		nColorKey = 0xff000000;												// ビットマップならカラーキーあり
+		nColorKey = 0xff000000;	// ビットマップならカラーキーあり
 	}
 	else {
-		nColorKey = 0;														// ビットマップ以外ならカラーキーなし
+		nColorKey = 0;			// ビットマップ以外ならカラーキーなし
 	}
 
 	// テクスチャロード
@@ -746,11 +720,12 @@ extern LPDIRECT3DTEXTURE9 Load2DGraph(char *szFileName, TEX_2DPIC_INFO *pPicInfo
 }
 
 // 新規単位ピクチャ
-static TEX_UNIT_PICTURE *MakeUnitPicture(LPDIRECT3DTEXTURE9 ppbPicture, TEX_2DPIC_INFO *ppiPicInfo, char *szFileName)
+static TEX_UNIT_PICTURE *MakeUnitPicture(LPDIRECT3DTEXTURE9 ppbPicture, 
+	TEX_2DPIC_INFO *ppiPicInfo, char *szFileName)
 {
-	if (gUnitPicNum >= MAX_UNIT_PICTURES) return NULL;				// 空きチェック
+	if (gUnitPicNum >= MAX_UNIT_PICTURES) return NULL;			// 空きチェック
 
-	gUnitPictureBuf[gUnitPicNum].a2PicInfo = *ppiPicInfo;			// 絵情報
+	gUnitPictureBuf[gUnitPicNum].a2PicInfo = *ppiPicInfo;		// 絵情報
 	gUnitPictureBuf[gUnitPicNum].pPicture = ppbPicture;			// 絵オブジェクト
 	strncpy(gUnitPictureBuf[gUnitPicNum].szFileName, szFileName, MAX_PICTURE_NAME - 1);	// 絵ファイル名
 	gUnitPictureBuf[gUnitPicNum].szFileName[MAX_PICTURE_NAME - 1] = 0;	// ファイル名の終端を確実に置く
@@ -760,7 +735,8 @@ static TEX_UNIT_PICTURE *MakeUnitPicture(LPDIRECT3DTEXTURE9 ppbPicture, TEX_2DPI
 }
 
 // 新規絵ハンドル
-static int Make2DHandle(TEX_UNIT_PICTURE *pUnitPic, int nLeft, int nTop, int nWidth, int nHeight, int bFlags)
+static int Make2DHandle(TEX_UNIT_PICTURE *pUnitPic, 
+	int nLeft, int nTop, int nWidth, int nHeight, int bFlags)
 {
 	int	hPicture = PIC2D_HANDLE_HEAD;
 
@@ -774,20 +750,19 @@ static int Make2DHandle(TEX_UNIT_PICTURE *pUnitPic, int nLeft, int nTop, int nWi
 	gUserPictureBuf[gUserPicNum].bFlags = bFlags;
 	gUserPicNum++;
 
-	hPicture |= gUserPicNum - 1;										// ハンドル生成
+	hPicture |= gUserPicNum - 1;	// ハンドル生成
 
 	return hPicture;
 }
 
 // 2Dグラフィックロード
-int LoadTexture(char *szFileName)
-{
+int LoadTexture(char *szFileName) {
 	LPDIRECT3DTEXTURE9		ppbPicture;
 	TEX_2DPIC_INFO			piPicInfo;
 	TEX_UNIT_PICTURE		*pUnitPic;		// 単位ピクチャ
 	int						hPicture;		// ピクチャハンドル
 
-	ppbPicture = Load2DGraph(szFileName, &piPicInfo);				// グラフィックロード
+	ppbPicture = Load2DGraph(szFileName, &piPicInfo);	// グラフィックロード
 	
 	pUnitPic = MakeUnitPicture(ppbPicture, &piPicInfo, szFileName);	// 単位ピクチャ登録
 
@@ -809,16 +784,17 @@ static int LoadBlockedTexture(char *szFileName, int nXSize, int nYSize,
 	TEX_2DPIC_INFO			piPicInfo;
 	TEX_UNIT_PICTURE		*pUnitPic;	// 単位ピクチャ
 
-	ppbPicture = Load2DGraph(szFileName, &piPicInfo);				// グラフィックロード
+	ppbPicture = Load2DGraph(szFileName, &piPicInfo);	// グラフィックロード
 	
 	pUnitPic = MakeUnitPicture(ppbPicture, &piPicInfo, szFileName);	// 単位ピクチャ登録
 
-	nBlockNum = 0;														// 初期ブロック数
+	nBlockNum = 0;	// 初期ブロック数
 	y = 0;
 	for (i = 0; i < nYNum; i++) {
 		x = 0;
 		for (j = 0; j < nXNum; j++) {
-			if (1) {	// ブロックが絵の外に掛からない
+			// ブロックが絵の外に掛からない
+			if (1) {
 				*(phHandleBuf + nBlockNum) = Make2DHandle(pUnitPic, x, y, nXSize, nYSize, 0);	// ハンドル作成
 				nBlockNum++;
 				if (bFlags & PICTURE_LR) {
@@ -826,8 +802,10 @@ static int LoadBlockedTexture(char *szFileName, int nXSize, int nYSize,
 					nBlockNum++;
 				}
 			}
-			else {														// ブロックが絵の外に掛かる
-				if (bFlags & PICTURE_LR) {							// 左右反転ありか
+			// ブロックが絵の外に掛かる
+			else {
+				// 左右反転ありか
+				if (bFlags & PICTURE_LR) {
 					*(phHandleBuf + nBlockNum) = *(phHandleBuf + nBlockNum - 2);	// ふたつ前コピー
 					*(phHandleBuf + nBlockNum + 1) = *(phHandleBuf + nBlockNum - 1);	// ふたつ前コピー
 					nBlockNum += 2;
@@ -839,8 +817,7 @@ static int LoadBlockedTexture(char *szFileName, int nXSize, int nYSize,
 			}
 			// 規定数まで達していれば終了
 			if ((!(bFlags & PICTURE_LR) && nBlockNum >= nAllNum) ||
-				((bFlags & PICTURE_LR) && nBlockNum >= nAllNum * 2))
-			{
+				((bFlags & PICTURE_LR) && nBlockNum >= nAllNum * 2)) {
 				break;
 			}
 			x += nXSize;
@@ -855,8 +832,7 @@ static int LoadBlockedTexture(char *szFileName, int nXSize, int nYSize,
  * ブロック化2Dグラフィックロード(呼び出し用)
  */
 int LoadBlkTexture(char *szFileName, int nXSize, int nYSize,
-	int nXNum, int nYNum, int nAllNum, int *phHandleBuf)
-{
+	int nXNum, int nYNum, int nAllNum, int *phHandleBuf) {
 	return LoadBlockedTexture(szFileName, nXSize, nYSize,
 		nXNum, nYNum, nAllNum, phHandleBuf, 0);
 }
@@ -864,8 +840,7 @@ int LoadBlkTexture(char *szFileName, int nXSize, int nYSize,
 /**
  * 2Dグラフィック開放
  */
-int Release2DGraphs(void)
-{
+int Release2DGraphs(void) {
 	int	i;
 
 	// グラフィック開放
@@ -883,25 +858,24 @@ int Release2DGraphs(void)
 static int BlendFactor;		// ブレンドファクタ
 
 // 描画矩形用頂点
-extern BOX_2DVERTEX				gDrawRect[4] = { {   0.0f,   0.0f, 0.0f, 1.0f, 0xffffffff, 0.0f, 0.0f },
-												 { 640.0f,   0.0f, 0.0f, 1.0f, 0xffffffff, 1.0f, 0.0f },
-												 {   0.0f, 480.0f, 0.0f, 1.0f, 0xffffffff, 0.0f, 1.0f },
-												 { 640.0f, 480.0f, 0.0f, 1.0f, 0xffffffff, 1.0f, 1.0f } };
+BOX_2DVERTEX	gDrawRect[4] = { {   0.0f,   0.0f, 0.0f, 1.0f, 0xffffffff, 0.0f, 0.0f },
+								 { 640.0f,   0.0f, 0.0f, 1.0f, 0xffffffff, 1.0f, 0.0f },
+								 {   0.0f, 480.0f, 0.0f, 1.0f, 0xffffffff, 0.0f, 1.0f },
+								 { 640.0f, 480.0f, 0.0f, 1.0f, 0xffffffff, 1.0f, 1.0f } };
 
 BLEND_STATE		gBlendState;	// 現在のブレンドステート
 
 /**
  * ブレンドファクタセット
  */
-static void SetBlendFactor(int nBlendFactor)
-{
-	int							i;
+static void SetBlendFactor(int nBlendFactor) {
+	int	i;
 
 	// サチレーション
 	if (nBlendFactor < 0) nBlendFactor = 0;
 	if (nBlendFactor > MAX_BLEND_FACTOR) nBlendFactor = MAX_BLEND_FACTOR;
 
-	gBlendState.nBlendFactor = nBlendFactor;				// ブレンドファクタ保存
+	gBlendState.nBlendFactor = nBlendFactor;	// ブレンドファクタ保存
 
 	// 描画頂点セット
 	for (i = 0; i < 4; i++) {
@@ -913,8 +887,7 @@ static void SetBlendFactor(int nBlendFactor)
 /**
  * ブレンドステート初期化
  */
-int InitBlendState(void)
-{
+int InitBlendState(void) {
 	// アルファブレンドなし
 	gD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
 	gBlendState.nBlendMode = DRAW_NOBLEND;
@@ -951,20 +924,24 @@ static int Calc2DUVCoord(float *du1, float *dv1, float *du2, float *dv2,
 	TEX_2DPIC_INFO *pPicInfo)
 {
 	// u方向
-	if (sx1 <= sx2) {											// 左右反転なし
+	// 左右反転なし
+	if (sx1 <= sx2) {
 		*du1 = (float)(sx1 + 0.5f) / pPicInfo->nRealWidth;
 		*du2 = (float)(sx2 /* + 0.5f*/) / pPicInfo->nRealWidth;
 	}
-	else {														// 左右反転あり
+	// 左右反転あり
+	else {
 		*du1 = (float)(sx1 - 0.5f) / pPicInfo->nRealWidth;
 		*du2 = (float)(sx2 /*  - 0.5f*/) / pPicInfo->nRealWidth;
 	}
 
 	// v方向
-	if (sy1 <= sy2) {											// 左右反転なし
+	// 左右反転なし
+	if (sy1 <= sy2) {
 		*dv1 = (float)(sy1 + 0.5f) / pPicInfo->nRealHeight;
 		*dv2 = (float)(sy2 /*- 0.5f*/) / pPicInfo->nRealHeight;
 	}
+	// 左右反転あり
 	else {
 		*dv1 = (float)(sy1 - 0.5f) / pPicInfo->nRealHeight;
 		*dv2 = (float)(sy2 /*- 0.5f*/) / pPicInfo->nRealHeight;
@@ -983,8 +960,6 @@ int Draw2DGraph(int dx1, int dy1, int dx2, int dy2,
 	float						tu1, tv1, tu2, tv2;
 
 	Calc2DUVCoord(&tu1, &tv1, &tu2, &tv2, sx1, sy1, sx2, sy2, pPicInfo);
-	//	tu1  = ( float )( sx1 + 0.5f ) / pPicInfo->nRealWidth;  tv1  = ( float )( sy1 + 0.5f ) / pPicInfo->nRealHeight;
-	//	tu2  = ( float )( sx2  /* - 0.5f */ ) / pPicInfo->nRealWidth;  tv2  = ( float )( sy2 /*- 0.5f*/ ) / pPicInfo->nRealHeight;
 	gDrawRect[0].x = (float)dx1;  gDrawRect[0].y = (float)dy1;  gDrawRect[0].tu = tu1;  gDrawRect[0].tv = tv1;
 	gDrawRect[1].x = (float)dx2;  gDrawRect[1].y = (float)dy1;  gDrawRect[1].tu = tu2;  gDrawRect[1].tv = tv1;
 	gDrawRect[2].x = (float)dx1;  gDrawRect[2].y = (float)dy2;  gDrawRect[2].tu = tu1;  gDrawRect[2].tv = tv2;
@@ -999,10 +974,9 @@ int Draw2DGraph(int dx1, int dy1, int dx2, int dy2,
 /**
  * 描画色セット
  */
-int SetDrawColor(int nRed, int nGreen, int nBlue)
-{
+int SetDrawColor(int nRed, int nGreen, int nBlue) {
 	int							i;
-	int							nCompositColor;					// 合成済みの色
+	int							nCompositColor;	// 合成済みの色
 
 	// サチレーション
 	if (nRed < 0) nRed = 0;
@@ -1030,8 +1004,7 @@ int SetDrawColor(int nRed, int nGreen, int nBlue)
 /**
  * ブレンドステート取得
  */
-int GetBlendState(BLEND_STATE *pbsBlendFactor)
-{
+int GetBlendState(BLEND_STATE *pbsBlendFactor) {
 	*pbsBlendFactor = gBlendState;
 
 	return OK;
@@ -1040,15 +1013,14 @@ int GetBlendState(BLEND_STATE *pbsBlendFactor)
 /**
  * ブレンドモード設定
  */
-int SetBlendState(int nBlendCode, int nBlendFactor)
-{
+int SetBlendState(int nBlendCode, int nBlendFactor) {
 	// ブレンドなし
 	if (nBlendCode == DRAW_NOBLEND) {
 		if (gBlendState.nBlendMode != DRAW_NOBLEND) {
 			gD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
 			gBlendState.nBlendMode = DRAW_NOBLEND;
 		}
-		SetBlendFactor(255);								// ブレンドファクタ設定
+		SetBlendFactor(255);	// ブレンドファクタ設定
 	}
 
 	// アルファブレンディング
@@ -1060,7 +1032,7 @@ int SetBlendState(int nBlendCode, int nBlendFactor)
 			gD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 			gBlendState.nBlendMode = DRAW_ALPHABLEND;
 		}
-		SetBlendFactor(nBlendFactor);						// ブレンドファクタ設定
+		SetBlendFactor(nBlendFactor);	// ブレンドファクタ設定
 	}
 
 	// 加算ブレンディング
@@ -1072,7 +1044,7 @@ int SetBlendState(int nBlendCode, int nBlendFactor)
 			gD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ONE);
 			gBlendState.nBlendMode = DRAW_ADDBLEND;
 		}
-		SetBlendFactor(nBlendFactor);						// ブレンドファクタ設定
+		SetBlendFactor(nBlendFactor);	// ブレンドファクタ設定
 	}
 
 	return OK;
@@ -1081,8 +1053,7 @@ int SetBlendState(int nBlendCode, int nBlendFactor)
 /**
  * ブレンドステート復帰
  */
-int RestoreBlendState(BLEND_STATE *pbsRestoreBlend)
-{
+int RestoreBlendState(BLEND_STATE *pbsRestoreBlend) {
 	SetBlendState(pbsRestoreBlend->nBlendMode, pbsRestoreBlend->nBlendFactor);	// ブレンドファクタ設定
 	// 必要なら色ファクタ設定
 	if (gBlendState.nBrRed != pbsRestoreBlend->nBrRed ||
@@ -1091,7 +1062,7 @@ int RestoreBlendState(BLEND_STATE *pbsRestoreBlend)
 	{
 		SetDrawColor(pbsRestoreBlend->nBrRed, pbsRestoreBlend->nBrGreen, pbsRestoreBlend->nBrBlue);
 	}
-	gBlendState = *pbsRestoreBlend;							// ブレンドステート保存
+	gBlendState = *pbsRestoreBlend;	// ブレンドステート保存
 
 	return OK;
 }
@@ -1101,11 +1072,12 @@ static int DrawPictureCond(int dx1, int dy1, int dx2, int dy2,
 	int sx1, int sy1, int sx2, int sy2,
 	LPDIRECT3DTEXTURE9 pPicture, TEX_2DPIC_INFO *pPicInfo, int bConds)
 {
-	int					nResult;								// リザルトコード
-	BLEND_STATE		bsBlendBuf;								// ブレンドステート退避場所
+	int	nResult;				// リザルトコード
+	BLEND_STATE		bsBlendBuf;	// ブレンドステート退避場所
 
-	if (bConds & (DRAWPIC_PICALPHA | DRAWPIC_AVEALPHA | DRAWPIC_ADDALPHA)) {	// 絵のアルファ値考慮か
-		GetBlendState(&bsBlendBuf);							// ブレンドステート取得
+	// 絵のアルファ値考慮か
+	if (bConds & (DRAWPIC_PICALPHA | DRAWPIC_AVEALPHA | DRAWPIC_ADDALPHA)) {
+		GetBlendState(&bsBlendBuf);	// ブレンドステート取得
 		if (bConds & DRAWPIC_ADDALPHA) {
 			if (bConds & DRAWPIC_AVEALPHA) {
 				SetBlendState(DRAW_ADDBLEND, MAX_BLEND_FACTOR / 2);		// 加算ブレンド
@@ -1119,7 +1091,7 @@ static int DrawPictureCond(int dx1, int dy1, int dx2, int dy2,
 				SetBlendState(DRAW_ALPHABLEND, MAX_BLEND_FACTOR / 2);		// アルファブレンド
 			}
 			else {
-				SetBlendState(DRAW_ALPHABLEND, bsBlendBuf.nBlendFactor);		// アルファブレンド
+				SetBlendState(DRAW_ALPHABLEND, bsBlendBuf.nBlendFactor);	// アルファブレンド
 			}
 		}
 	}
@@ -1129,7 +1101,8 @@ static int DrawPictureCond(int dx1, int dy1, int dx2, int dy2,
 		sx1, sy1, sx2, sy2,
 		pPicture, pPicInfo);
 
-	if (bConds & (DRAWPIC_PICALPHA | DRAWPIC_AVEALPHA | DRAWPIC_ADDALPHA)) {	// 絵のアルファ値考慮か
+	// 絵のアルファ値考慮か
+	if (bConds & (DRAWPIC_PICALPHA | DRAWPIC_AVEALPHA | DRAWPIC_ADDALPHA)) {
 		RestoreBlendState(&bsBlendBuf);					// ブレンドステート復帰
 	}
 
@@ -1139,8 +1112,7 @@ static int DrawPictureCond(int dx1, int dy1, int dx2, int dy2,
 /**
  * 描画モードの設定
  */
-int SetDrawMode(int nDrawMode, int nParam)
-{
+int SetDrawMode(int nDrawMode, int nParam) {
 	// ブレンドモード
 	if (nDrawMode & DRAW_NOBLEND) {							// ブレンドなし
 		SetBlendState(DRAW_NOBLEND, 0);
@@ -1161,14 +1133,13 @@ int SetDrawMode(int nDrawMode, int nParam)
  * @parme y y座標
  * @parme hPicture 描画画像
  */
-int DrawMem(int x, int y, int hPicture)
-{
-	int					nResult;								// リザルトコード
-	int					nUserPicLoc;							// ユーザー絵位置
-	TEX_USER_PICTURE		*pupUserPic;							// ユーザー絵
-	int					bDrawConds = 0;							// 描画条件
+int DrawMem(int x, int y, int hPicture) {
+	int	nResult;					// リザルトコード
+	int	nUserPicLoc;				// ユーザー絵位置
+	TEX_USER_PICTURE *pupUserPic;	// ユーザー絵
+	int	bDrawConds = 0;				// 描画条件
 
-	nUserPicLoc = hPicture & ~HANDLE_HEAD_MASK;				// 位置
+	nUserPicLoc = hPicture & ~HANDLE_HEAD_MASK;	// 位置
 
 	pupUserPic = &gUserPictureBuf[nUserPicLoc];
 
@@ -1186,14 +1157,13 @@ int DrawMem(int x, int y, int hPicture)
  * @parme y y座標
  * @parme hPicture 描画画像
  */
-int DrawMemTh(int x, int y, int hPicture)
-{
-	int					nResult;								// リザルトコード
-	int					nUserPicLoc;							// ユーザー絵位置
-	TEX_USER_PICTURE		*pupUserPic;							// ユーザー絵
-	int					bDrawConds = DRAWPIC_PICALPHA;		// 描画条件
+int DrawMemTh(int x, int y, int hPicture) {
+	int	nResult;						// リザルトコード
+	int	nUserPicLoc;					// ユーザー絵位置
+	TEX_USER_PICTURE *pupUserPic;		// ユーザー絵
+	int	bDrawConds = DRAWPIC_PICALPHA;	// 描画条件
 
-	nUserPicLoc = hPicture & ~HANDLE_HEAD_MASK;				// 位置
+	nUserPicLoc = hPicture & ~HANDLE_HEAD_MASK;	// 位置
 
 	pupUserPic = &gUserPictureBuf[nUserPicLoc];
 
@@ -1208,8 +1178,7 @@ int DrawMemTh(int x, int y, int hPicture)
 /**
  * バックバッファのクリア
  */
-int ClearBackBuffer(int r, int g, int b)
-{
+int ClearBackBuffer(int r, int g, int b) {
 	gD3DDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
 		D3DCOLOR_XRGB(r, g, b), 1.0f, 0);
 
@@ -1219,11 +1188,10 @@ int ClearBackBuffer(int r, int g, int b)
 /**
  * 画面クリア
  */
-int HCls(void)
-{
-	int					nResult;								// リザルトコード
+int HCls(void) {
+	int	nResult;	// リザルトコード
 
-	nResult = ClearBackBuffer(0, 0, 0);					// 画面更新処理
+	nResult = ClearBackBuffer(0, 0, 0);	// 画面更新処理
 
 	return nResult;
 }
@@ -1231,25 +1199,23 @@ int HCls(void)
 /**
  * 画面更新処理
  */
-int Flip(void)
-{
-	int					nResult;								// リザルトコード
+int Flip(void) {
+	int	nResult;	// リザルトコード
 
-	nResult = DispFlip();										// 画面更新処理
+	nResult = DispFlip();	// 画面更新処理
 
 	fg_nFrameCount++;
 
 	return nResult;
 }
 
-POINTVERTEX		gPointBuf[MAX_POINT_NUM];	// ポイントバッファ
+POINTVERTEX	gPointBuf[MAX_POINT_NUM];	// ポイントバッファ
 
 /**
  * 色の掛け算計算
  */
-static int GetModulateColor(int nColor1, int nColor2)
-{
-	int				nAlpha, nRed, nGreen, nBlue;
+static int GetModulateColor(int nColor1, int nColor2) {
+	int	nAlpha, nRed, nGreen, nBlue;
 
 	nAlpha = (((nColor1 >> 24) & 0xff) * ((nColor2 >> 24) & 0xff)) / 0xff;
 	nRed = (((nColor1 >> 16) & 0xff) * ((nColor2 >> 16) & 0xff)) / 0xff;
@@ -1262,11 +1228,10 @@ static int GetModulateColor(int nColor1, int nColor2)
 /**
  * 長方形の描画
  */
-extern int DrawRectangleArray(POINT_DATA *papPoints, int nRectNum)
-{
-	int							i;
-	int							nResult = OK;
-	POINT_DATA				*pPresPoint;					// 現在の点
+int DrawRectangleArray(POINT_DATA *papPoints, int nRectNum) {
+	int	i;
+	int	nResult = OK;
+	POINT_DATA *pPresPoint;	// 現在の点
 
 	if (nRectNum > MAX_RECT_NUM) {
 		nRectNum = MAX_RECT_NUM;
@@ -1322,9 +1287,8 @@ extern int DrawRectangleArray(POINT_DATA *papPoints, int nRectNum)
  * @parme y2 左下y座標
  * @parme color 色コード
  */
-void DrawFBox(int x1, int y1, int x2, int y2, int color)
-{
-	POINT_DATA				apRectPoint[2];					// 左上・右下の点
+void DrawFBox(int x1, int y1, int x2, int y2, int color) {
+	POINT_DATA apRectPoint[2];	// 左上・右下の点
 
 	// 左上
 	apRectPoint[0].x = x1;  apRectPoint[0].y = y1;  apRectPoint[0].z = 0;
@@ -1334,7 +1298,7 @@ void DrawFBox(int x1, int y1, int x2, int y2, int color)
 	apRectPoint[1].x = x2;  apRectPoint[1].y = y2;  apRectPoint[1].z = 0;
 	apRectPoint[1].nColor = color;
 
-	DrawRectangleArray(apRectPoint, 1);					// 描画
+	DrawRectangleArray(apRectPoint, 1);	// 描画
 
 	return;
 }
@@ -1363,12 +1327,12 @@ void fps() {
 			ave += f[i];
 		ave /= MAX_FPS;
 	}
-#ifdef MODE_DEBUG
+#ifdef DRAW_FPS
 	if (ave != 0) {
 		DrawString(0, 0, GetColor(NULL, 255, 255, 255), "%.1fFPS", 1000.0 / (double)ave);
 		DrawString(0, 20, GetColor(NULL, 255, 255, 255), "%dms", ave);
 	}
-#endif // MODE_DEBUG
+#endif // DRAW_FPS
 
 	return;
 }
@@ -1381,8 +1345,7 @@ void wait_fanc() {
 	static int t = 0;
 	onefps = (1 * 1000) / MAX_FPS;
 	term = timeGetTime() - t;
-	if (onefps - term > 0)
-		Sleep(onefps - term);
+	if (onefps - term > 0) { Sleep(onefps - term); }
 	t = timeGetTime();
 	return;
 }

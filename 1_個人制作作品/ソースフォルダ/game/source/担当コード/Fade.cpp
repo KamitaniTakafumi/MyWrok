@@ -1,51 +1,64 @@
 #include "Fade.h"
 
 namespace act {
-	Fade::Fade()
-	{
-		
+	/**
+	 * フェードコンストラクタ
+	 */
+	Fade::Fade() :
+		_FadeIn(0),
+		_FadeOut(0) {
 	}
 
-	void Fade::Initialize()
-	{
+	/**
+	 * フェード初期化
+	 */
+	void Fade::Initialize() {
 		_FadeIn = 255;
 		_FadeOut = 0;
 	}
 
-	void Fade::FadeIn()
-	{
+	/**
+	 * フェードイン処理
+	 */
+	void Fade::FadeIn() {
 		SetDrawMode(DRAW_ALPHABLEND, _FadeIn);
 		DrawFBox(0, 0,
 			1280, 720,
 			GetColor(NULL, 0, 0, 0));
-		if (_FadeIn > 0)
-		{
+		if (_FadeIn > 0) {
 			_FadeIn -= 5;
 		}
 
 	}
 
-	void Fade::FadeOut()
-	{
+	/**
+	 * フェードアウト処理
+	 */
+	void Fade::FadeOut() {
 		SetDrawMode(DRAW_ALPHABLEND, _FadeOut);
 		DrawFBox(0, 0,
 			1280, 720,
 			GetColor(NULL, 0, 0, 0));
-		if (_FadeOut < 255)
-		{
+		if (_FadeOut < 255) {
 			_FadeOut += 5;
 		}
 
 	}
-	bool Fade::FadeInFlag()
-	{
+
+	/**
+	 * フェードインフラグ処理
+	 */
+	bool Fade::FadeInFlag() {
 		if (_FadeIn <= 0) {
 			return true;
 		}
 		return false;
 	}
-	bool Fade::FadeOutFlag()
-	{
+
+	/**
+	 * フェードアウトフラグ処理
+	 */
+	bool Fade::FadeOutFlag() {
 		if (_FadeOut >= 255) {
 			return true;
 		}

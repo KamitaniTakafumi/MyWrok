@@ -15,13 +15,19 @@ namespace act {
 	bool ModeGame::Initialize() {
 		if (!base::Initialize()) { return false; }
 
+		// コントロール初期化
 		chara = std::make_unique<Control>();
 		chara->Initialize();
 
+		// フェード初期化
 		fade = std::make_unique<Fade>();
 		fade->Initialize();
 
-		_bg = LoadTexture("res/stage.png");
+		// UI初期化
+		ui = std::make_unique<UI>();
+		ui->Initialize();
+
+		_bg = LoadTexture("res/stage.png");	// 背景読み込み
 		return true;
 	}
 
@@ -45,10 +51,8 @@ namespace act {
 		int trg = ApplicationMain::GetInstance()->GetTrg();
 		
 		// プレイヤーの体力が0ならゲームオーバー
-		if (chara->CheckPlayerHP() == true)
-		{
-			if (fade->FadeOutFlag() == true)
-			{
+		if (chara->CheckPlayerHP() == true) {
+			if (fade->FadeOutFlag() == true) {
 				// このモードを削除予約
 				ModeServer::GetInstance()->Del(this);
 				// 次のモードを登録
@@ -68,10 +72,16 @@ namespace act {
 	bool ModeGame::Render() {
 		base::Render();
 		DrawMem(0, 0, _bg);	// 背景描画
+		
 		chara->Draw();		// キャラ描画
+
+		// プレイヤー体力が０になったら
 		if (chara->CheckPlayerHP() == true) {
-			fade->FadeOut();
+			fade->FadeOut();	// フェード描画
 		}
+
+		int PlayerLife = chara->GetPlayerHP();	// プレイヤー体力
+		ui->Draw(PlayerLife);	// UI描画
 
 		return true;
 	}

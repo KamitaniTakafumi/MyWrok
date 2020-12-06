@@ -10,8 +10,7 @@
 #include "ModeGame.h"
 
 namespace act {
-	class ModeTitle : public ModeBase
-	{
+	class ModeTitle : public ModeBase {
 		typedef ModeBase base;
 	public:
 		/**

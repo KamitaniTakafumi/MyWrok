@@ -104,14 +104,8 @@
 #define KEYIN_W			0x8000		// Ｗチェックマスク(パッドSTART)
 
 #define MAX_FPS		60	// 最大FPS
+//#define DRAW_FPS		// FPS描画の有無
 
-
-
-extern D3DFORMAT	gScreenFormat;
-extern int			gScreenWidth;
-extern int			gScreenHeight;
-
-extern IDirect3DDevice9*	gD3DDevice;
 
 bool InitD3D(HWND hWnd, bool bFullScreen);
 void ReleaseD3D();
@@ -174,34 +168,22 @@ extern bool KeyJudg(int nPushKey, int nJudgKey);
  */
 extern bool PadJudg(int nPushPad, int nJudgPad);
 
-extern int gJoyPadNum;											// ジョイパッド数
-
-extern int gKeyOld1;
-extern int gKey1;
-extern int gTrg1;
-
-extern int gKeyOld2;
-extern int gKey2;
-extern int gTrg2;
-
-extern int gKeyOld3;
-extern int gKey3;
-extern int gTrg3;
-
-extern int gKeyOld4;
-extern int gKey4;
-extern int gTrg4;
-
-
+extern int gJoyPadNum;	// ジョイパッド数
 
 /**
- *　文字列使用初期化
+ * 文字列使用初期化
  */
 extern int InitFont();
 
-void DrawString(float x, float y, int color, const char *fmt, ...);
+/**
+ * 文字列描画
+ * @param x,y	描画座標
+ * @param color	色コード
+ * @param fmt	文字列
+ * @param ...	表示したい変数など
+ */
+extern void DrawString(float x, float y, int color, const char *fmt, ...);
 DWORD GetColor(int alpha, int red, int green, int blue);
-
 
 
 /**
@@ -288,7 +270,6 @@ struct POINTVERTEX {
  * @parme color 色コード
  */
 void DrawFBox(int x1, int y1, int x2, int y2, int color);
-
 
 
 extern int gFpsCount;

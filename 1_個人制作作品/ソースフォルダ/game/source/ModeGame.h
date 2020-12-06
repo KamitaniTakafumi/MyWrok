@@ -10,14 +10,15 @@
 #include "Control.h"
 #include "ModeGameover.h"
 #include "Fade.h"
+#include "UI.h"
 
 namespace act {
-	class ModeGame : public ModeBase
-	{
+	class ModeGame : public ModeBase {
 		typedef ModeBase base;
 	private:
 		std::unique_ptr<Control> chara;
 		std::unique_ptr<Fade> fade;
+		std::unique_ptr<UI> ui;
 	public:
 		/**
 		 * ƒCƒ“ƒQ[ƒ€‰Šú‰»

@@ -15,12 +15,12 @@ namespace act {
 		/**
 		 * アイテムコンストラクタ
 		 */
-		Item(int i);
+		Item();
 
 		/**
 		 * アイテムデストラクタ
 		 */
-		virtual ~Item();
+		virtual ~Item() = default;
 
 		/**
 		 * アイテム初期化
@@ -98,11 +98,27 @@ namespace act {
 		 * フラグ処理
 		 */
 		void UseItem();
+
+		/**
+		 *  種類別のアイテム使用判定
+		 */
+		void JudgmentItem();
 	private:
+		// アイテムの区別
+		enum ItemDistinguish {
+			White,
+			Green,
+			Blue,
+			Red,
+			Gold,
+			HeartBlack
+		};
+
 		int _x, _y;				// x座標,y座標
 		int _ghitem;			// グラフィックハンドル格納用配列
 		int _width, _height;	// 画像幅
 		int _speed;				// 落下スピード
 		bool _use;				// 使っているかどうかのフラグ
+		int _ItemType;			// アイテム種類
 	};
 }

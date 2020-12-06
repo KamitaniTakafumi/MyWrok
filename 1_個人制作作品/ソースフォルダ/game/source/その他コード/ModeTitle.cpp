@@ -35,8 +35,7 @@ namespace act {
 		int trg = ApplicationMain::GetInstance()->GetTrg();
 
 		// キーボードのリターンキー、もしくはパッドのAボタンが押されたら処理
-		if (KeyJudg(trg, KEYIN_RET) || PadJudg(trg, KEYIN_Z))
-		{
+		if (KeyJudg(trg, KEYIN_RET) || PadJudg(trg, KEYIN_Z)) {
 			// このモードを削除予約
 			ModeServer::GetInstance()->Del(this);
 			// 次のモードを登録
@@ -55,15 +54,12 @@ namespace act {
 		DrawMem(0, 0, _bg);				// 背景描画
 
 		// 0.5秒に1回点滅させる
-		if ((_stocktime % 1000) < 500)
-		{
+		if ((_stocktime % 1000) < 500) {
 			// パッドが接続されているかによって表示する画像を変える
-			if (gJoyPadNum != 0)
-			{
+			if (gJoyPadNum != 0) {
 				DrawMemTh(0, 0, _startpad);	// スタート画像描画(パッド)
 			}
-			else
-			{
+			else {
 				DrawMemTh(0, 0, _start);	// スタート画像描画(キーボード)
 			}
 		}
