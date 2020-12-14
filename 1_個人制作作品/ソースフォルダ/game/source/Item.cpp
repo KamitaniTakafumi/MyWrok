@@ -5,6 +5,7 @@
  * @date 2020 / 08 / 25
  */
 
+#include "appframe.h"
 #include "Item.h"
 
 namespace act {

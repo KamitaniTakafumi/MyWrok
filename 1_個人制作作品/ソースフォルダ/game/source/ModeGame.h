@@ -6,9 +6,7 @@
  */
 
 #pragma once
-#include "appframe.h"
 #include "Control.h"
-#include "ModeGameover.h"
 #include "Fade.h"
 #include "UI.h"
 

@@ -8,8 +8,7 @@
 #include "appframe.h"
 
 namespace act {
-	class ApplicationMain : public ApplicationBase
-	{
+	class ApplicationMain : public ApplicationBase {
 		typedef ApplicationBase base;
 	public:
 		/**

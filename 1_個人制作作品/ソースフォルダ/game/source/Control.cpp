@@ -6,6 +6,7 @@
  */
 
 #include "Control.h"
+#include "Item.h"
 
 namespace act {
 	/**
@@ -85,8 +86,8 @@ namespace act {
 	 * @param cy2 yç¿ïWÇQ
 	 */
 	bool Control::CircleCollision(double c1, double c2, 
-		double cx1, double cx2, double cy1, double cy2)
-	{
+		double cx1, double cx2, double cy1, double cy2) {
+
 		double hlength = c1 + c2;
 		double xlength = cx1 - cx2;
 		double ylength = cy1 - cy2;

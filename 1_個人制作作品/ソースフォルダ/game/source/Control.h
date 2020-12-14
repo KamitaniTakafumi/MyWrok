@@ -6,9 +6,11 @@
  */
 
 #pragma once
-#include "appframe.h"
 #include "Player.h"
-#include "Item.h"
+
+namespace act {
+	class Item;
+}
 
 namespace act {
 	class Control {

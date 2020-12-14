@@ -7,6 +7,7 @@
 
 #include "ApplicationMain.h"
 #include "ModeGame.h"
+#include "ModeGameover.h"
 
 namespace act {
 	/**

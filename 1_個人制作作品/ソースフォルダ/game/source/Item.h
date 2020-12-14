@@ -6,11 +6,9 @@
  */
 
 #pragma once
-#include "appframe.h"
 
 namespace act {
-	class Item
-	{
+	class Item {
 	public:
 		/**
 		 * アイテムコンストラクタ
