@@ -97,21 +97,21 @@ bool InitD3D(HWND hWnd, bool bFullScreen) {
 	//	デバイス作成
 	if (FAILED(glpD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
 		D3DCREATE_HARDWARE_VERTEXPROCESSING,
-		&gD3Dpp, &gD3DDevice))) 
-	{
+		&gD3Dpp, &gD3DDevice))) {
+
 		if (FAILED(glpD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
 			D3DCREATE_SOFTWARE_VERTEXPROCESSING,
-			&gD3Dpp, &gD3DDevice))) 
-		{
+			&gD3Dpp, &gD3DDevice))) {
+
 			MessageBox(0, "HALモードでDIRECT3Dデバイスを作成できません\nREFモードで再試行します", NULL, MB_OK);
 			if (FAILED(glpD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_REF, hWnd,
 				D3DCREATE_HARDWARE_VERTEXPROCESSING,
-				&gD3Dpp, &gD3DDevice))) 
-			{
+				&gD3Dpp, &gD3DDevice))) {
+
 				if (FAILED(glpD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_REF, hWnd,
 					D3DCREATE_SOFTWARE_VERTEXPROCESSING,
-					&gD3Dpp, &gD3DDevice))) 
-				{
+					&gD3Dpp, &gD3DDevice))) {
+
 					MessageBox(0, "DIRECT3Dデバイスの作成に失敗しました", NULL, MB_OK);
 					return false;
 				}
@@ -552,8 +552,7 @@ int InitJoyPad(int nMaxPadNum) {
 /**
  *  1P～4Pまでのキー入力取得
  */
-void InKey()
-{
+void InKey() {
 	gKeyOld1 = gKey1;
 	gKey1 = CheckKey(INPUT_PAD1);		//キー入力取得
 	gTrg1 = (gKey1 ^ gKeyOld1)& gKey1;	//トリガーキー入力取得
@@ -601,8 +600,8 @@ int			gStringFontSize = -1;	// 文字列フォントサイズ
 int InitFont() {
 	//文字列レンダリングの初期化
 	if (FAILED(D3DXCreateFont(gD3DDevice, 0, 10, FW_REGULAR, NULL, false, SHIFTJIS_CHARSET,
-		OUT_DEFAULT_PRECIS, PROOF_QUALITY, FIXED_PITCH | FF_MODERN, "ＭＳ ゴシック", &gD3DFont)))
-	{
+		OUT_DEFAULT_PRECIS, PROOF_QUALITY, FIXED_PITCH | FF_MODERN, "ＭＳ ゴシック", &gD3DFont))) {
+
 		return FONTERROR;
 	}
 
@@ -736,8 +735,8 @@ static TEX_UNIT_PICTURE *MakeUnitPicture(LPDIRECT3DTEXTURE9 ppbPicture,
 
 // 新規絵ハンドル
 static int Make2DHandle(TEX_UNIT_PICTURE *pUnitPic, 
-	int nLeft, int nTop, int nWidth, int nHeight, int bFlags)
-{
+	int nLeft, int nTop, int nWidth, int nHeight, int bFlags) {
+
 	int	hPicture = PIC2D_HANDLE_HEAD;
 
 	if (gUserPicNum >= MAX_USER_PICTURES) return NULL;	// ハンドル空きチェック
@@ -775,8 +774,8 @@ int LoadTexture(char *szFileName) {
  * ブロック化2Dグラフィックロード
  */
 static int LoadBlockedTexture(char *szFileName, int nXSize, int nYSize,
-	int nXNum, int nYNum, int nAllNum, int *phHandleBuf, int bFlags)
-{
+	int nXNum, int nYNum, int nAllNum, int *phHandleBuf, int bFlags) {
+
 	int	i, j;
 	int	x, y;		// ブロックの左上座標
 	int	nBlockNum;	// ブロック数
@@ -921,8 +920,8 @@ int InitBlendState(void) {
  */
 static int Calc2DUVCoord(float *du1, float *dv1, float *du2, float *dv2,
 	int sx1, int sy1, int sx2, int sy2,
-	TEX_2DPIC_INFO *pPicInfo)
-{
+	TEX_2DPIC_INFO *pPicInfo) {
+
 	// u方向
 	// 左右反転なし
 	if (sx1 <= sx2) {
@@ -955,8 +954,8 @@ static int Calc2DUVCoord(float *du1, float *dv1, float *du2, float *dv2,
  */
 int Draw2DGraph(int dx1, int dy1, int dx2, int dy2,
 	int sx1, int sy1, int sx2, int sy2,
-	LPDIRECT3DTEXTURE9 pPicture, TEX_2DPIC_INFO *pPicInfo)
-{
+	LPDIRECT3DTEXTURE9 pPicture, TEX_2DPIC_INFO *pPicInfo) {
+
 	float						tu1, tv1, tu2, tv2;
 
 	Calc2DUVCoord(&tu1, &tv1, &tu2, &tv2, sx1, sy1, sx2, sy2, pPicInfo);
@@ -1058,8 +1057,8 @@ int RestoreBlendState(BLEND_STATE *pbsRestoreBlend) {
 	// 必要なら色ファクタ設定
 	if (gBlendState.nBrRed != pbsRestoreBlend->nBrRed ||
 		gBlendState.nBrGreen != pbsRestoreBlend->nBrGreen ||
-		gBlendState.nBrBlue != pbsRestoreBlend->nBrBlue)
-	{
+		gBlendState.nBrBlue != pbsRestoreBlend->nBrBlue) {
+
 		SetDrawColor(pbsRestoreBlend->nBrRed, pbsRestoreBlend->nBrGreen, pbsRestoreBlend->nBrBlue);
 	}
 	gBlendState = *pbsRestoreBlend;	// ブレンドステート保存
@@ -1070,8 +1069,8 @@ int RestoreBlendState(BLEND_STATE *pbsRestoreBlend) {
 // 条件付き描画
 static int DrawPictureCond(int dx1, int dy1, int dx2, int dy2,
 	int sx1, int sy1, int sx2, int sy2,
-	LPDIRECT3DTEXTURE9 pPicture, TEX_2DPIC_INFO *pPicInfo, int bConds)
-{
+	LPDIRECT3DTEXTURE9 pPicture, TEX_2DPIC_INFO *pPicInfo, int bConds) {
+
 	int	nResult;				// リザルトコード
 	BLEND_STATE		bsBlendBuf;	// ブレンドステート退避場所
 

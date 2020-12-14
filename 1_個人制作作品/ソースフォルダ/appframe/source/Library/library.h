@@ -24,8 +24,6 @@
 #define FONTERROR	-4	// フォントエラー
 #define INPUTERROR	-5	// 入力エラー
 
-//#define MODE_DEBUG	// デバッグモード
-
 #define PICTURE_NAME_MAX	200		//画像ファイル名の最大文字数
 #define PICTURE_MAX			2000	//画像読み込み最大数
 #define PICTURE_BLOCK_MAX	2000	//画像登録最大数
@@ -124,8 +122,7 @@ void ReleaseFont();
 
 
 // ジョイパッド構造体
-struct JOYPAD
-{
+struct JOYPAD {
 	UINT		uJoyID;					// ジョイスティックＩＤ
 	BOOL		bValid;					// ジョイスティック有効か
 	DWORD		nMinX, nMaxX;			// スティックの最大、最小値
